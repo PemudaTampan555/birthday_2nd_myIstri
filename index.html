@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Happy Birthday Najah</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,600;1,600&family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0}
+body{min-height:100vh;font:400 16px Nunito,sans-serif;color:#7a5560;background:linear-gradient(135deg,#fde4ec,#fffaf6 50%,#fdebd8);overflow-x:hidden;transition:background 1.2s}
+body.dark{background:linear-gradient(#2a1a45,#0e0a1c);color:#c9bde0}
+body.dark::before{content:"";position:fixed;inset:0;pointer-events:none;background:radial-gradient(2px 2px at 12% 20%,#fff,#0000),radial-gradient(2px 2px at 40% 12%,#fff9,#0000),radial-gradient(2px 2px at 65% 35%,#fff,#0000),radial-gradient(2px 2px at 85% 60%,#fff9,#0000),radial-gradient(2px 2px at 25% 70%,#fff8,#0000)}
+h1,h2,.hd{font-family:Fraunces,serif;font-weight:600;color:#d9668a}
+.sc{display:none;position:relative;z-index:10;min-height:100vh;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:20px}
+.sc.on{display:flex}
+.card{background:#fffd;border-radius:28px;box-shadow:0 20px 50px #e8a5bd55;padding:28px 36px;text-align:center}
+.eb{font:700 12px Nunito;letter-spacing:.25em;text-transform:uppercase;color:#c9577f}
+.btn{border:0;border-radius:99px;padding:18px 0;width:min(400px,86vw);font:700 17px Nunito;color:#fff;cursor:pointer;background:linear-gradient(#ec7fa0,#c9577f);box-shadow:0 10px 24px #e0698f55;transition:.5s}
+.btn.s{width:auto;padding:16px 30px;font-size:16px}
+.btn:disabled{background:#eee;color:#bbb;box-shadow:none;cursor:default}
+body.dark .btn{background:#33254d;border:1px solid #6b5a8a;box-shadow:none}
+.dots{display:flex;gap:6px;justify-content:center;margin-top:18px}
+.dots i{width:6px;height:6px;border-radius:9px;background:#f3b3c6;transition:.4s}
+.dots i.a{width:22px;background:#e0698f}
+.pic{width:140px;height:140px;border-radius:8px;background:#fcdde6;display:flex;align-items:center;justify-content:center;font-size:76px;margin:0 auto}
+.pic img{width:100%;height:100%;object-fit:cover;border-radius:8px}
+/* intro + loading */
+.big{width:min(850px,94vw);min-height:500px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px}
+#it{font-size:clamp(28px,5vw,44px);transition:opacity .4s;min-height:60px}
+#yn{display:none;gap:14px}#yn.on{display:flex}
+#yn button:last-child{background:#fff;color:#7a5560;box-shadow:0 4px 14px #0001}
+.ld{width:200px;height:4px;background:#f7d6e0;border-radius:9px;overflow:hidden}
+.ld i{display:block;height:100%;background:linear-gradient(90deg,#f2a15c,#e0698f);animation:fill 3s linear forwards}
+@keyframes fill{from{width:0}to{width:100%}}
+/* room */
+#room{justify-content:space-between;padding-bottom:12vh}
+#hero{flex:1;display:flex;align-items:center}
+#hero h1{font-size:clamp(30px,5vw,44px);color:#d8cde8;margin-top:8px}
+.dk{position:fixed;opacity:0;font-size:56px;transition:opacity 1s;z-index:2}
+body.dark .dk{opacity:.55}
+#cel{position:fixed;top:290px;left:50%;width:min(530px,92vw);opacity:0;transform:translateX(-50%) scale(.9);transition:.7s}
+#cel.on{opacity:1;transform:translateX(-50%)}
+#cel h1{font-size:clamp(34px,7vw,56px)}
+/* lights, cats, balloons */
+#lights{display:none;position:fixed;top:0;left:50%;transform:translateX(-50%);width:min(1200px,100%);justify-content:space-around;pointer-events:none;z-index:5}
+body.lit #lights{display:flex}
+.b{width:2px;height:calc(40px + var(--h)*1px);background:#b9a3ad;position:relative;transform-origin:top;animation:drop .6s calc(var(--i)*.25s) both,sway 3s ease-in-out calc(var(--i)*.25s + .6s) infinite alternate}
+.b::after{content:"";position:absolute;left:-11px;top:100%;width:24px;height:34px;border-radius:50% 50% 50% 50%/60% 60% 40% 40%;background:var(--c);filter:drop-shadow(0 0 12px var(--c))}
+@keyframes drop{from{opacity:0;transform:translateY(-120px)}}
+@keyframes sway{from{transform:rotate(-4deg)}to{transform:rotate(4deg)}}
+.cat{position:fixed;font-size:84px;opacity:0;transform:scale(0);transition:.7s;z-index:6}
+body.cats .cat{opacity:1;transform:none}
+.cat.l{left:30px;bottom:40px}.cat.r{right:30px;top:160px}
+.bl{position:fixed;bottom:-150px;width:52px;height:66px;border-radius:50% 50% 46% 46%;background:var(--c);opacity:.85;z-index:4;pointer-events:none;animation:rise linear infinite both}
+.bl::after{content:"";position:absolute;top:100%;left:50%;width:1px;height:70px;background:#d9a9b5}
+@keyframes rise{to{transform:translate(var(--x),-130vh)}}
+.cf{position:fixed;top:-20px;width:9px;height:14px;z-index:60;pointer-events:none;animation:fall var(--d) linear var(--dl) both}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+/* cake */
+#bx{position:relative;width:min(900px,94vw);height:560px;padding:0;margin-top:14px}
+#bx>div{position:absolute;inset:0;padding:26px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;transition:opacity .6s}
+#wp{opacity:0;pointer-events:none}#wp.on{opacity:1;pointer-events:auto}
+#cw{position:relative;width:340px;transition:.8s}
+#cw.cut svg{filter:blur(6px);opacity:.4}
+#zone{position:absolute;left:3%;right:3%;top:44%;height:22%;border:1px dashed #e58aa5;border-radius:50%;touch-action:none;cursor:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='32' height='32'><text y='26' font-size='26'>🔪</text></svg>") 4 4,crosshair}
+#zone::before{content:"";position:absolute;left:0;right:0;top:50%;border-top:2px dashed #e58aa5}
+#fill{position:absolute;top:calc(50% - 2px);height:4px;background:#fff;box-shadow:0 0 10px 3px #fff,0 0 0 1px #e58aa5;border-radius:4px}
+#msg{position:absolute;inset:0;pointer-events:none;display:flex;flex-direction:column;align-items:center;justify-content:center;opacity:0;transition:.6s}
+#cw.cut #msg{opacity:1}
+#flame{transform-origin:170px 50px;animation:fl .4s infinite alternate}
+@keyframes fl{to{transform:scale(1.15,.9)}}
+.pb{width:min(400px,80vw);height:6px;background:#f7d6e0;border-radius:9px;overflow:hidden}
+.pb i{display:block;width:0;height:100%;background:linear-gradient(90deg,#f2a15c,#e0698f);transition:width .3s}
+.row{width:min(400px,80vw);display:flex;justify-content:space-between;font:600 14px Fraunces,serif;color:#a0566e}
+.gif{width:230px}
+/* flip cards */
+#cards{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;margin:20px 0}
+.fc{perspective:900px;width:min(340px,90vw);height:310px;cursor:pointer}
+.in{position:relative;width:100%;height:100%;transition:transform .7s;transform-style:preserve-3d}
+.fc.on .in{transform:rotateY(180deg)}
+.f,.k{position:absolute;inset:0;backface-visibility:hidden;border-radius:26px;background:#fff;box-shadow:0 14px 36px #e8a5bd55;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:24px;overflow:hidden}
+.f span{font-size:110px;line-height:1}
+.f b{background:#fff;border-radius:99px;padding:8px 18px;color:#c9577f;font:700 14px Fraunces,serif;box-shadow:0 3px 10px #0001}
+.k{transform:rotateY(180deg);justify-content:space-between;align-items:stretch;text-align:left;font:400 17px/1.7 Fraunces,serif;color:#7a5560}
+.k em{font:600 13px Fraunces,serif;text-align:center;color:#b08090;border-top:1px solid #f3dde4;padding-top:12px}
+#prog{width:min(400px,90vw);padding:16px 30px;background:#fffd;border-radius:30px;font:600 15px Fraunces,serif;color:#a0566e}
+#prog .pb{margin:8px auto 0;width:260px}
+/* overlays */
+.ov{position:fixed;inset:0;background:#3a2a3399;backdrop-filter:blur(6px);display:none;align-items:center;justify-content:center;z-index:50}
+.ov.on{display:flex}
+#stay{cursor:pointer;font:600 15px Fraunces,serif;color:#a0566e}
+.win{width:min(840px,94vw);height:min(78vh,780px);background:#fff;border-radius:28px;display:flex;flex-direction:column;padding:20px 28px}
+.bar{display:flex;align-items:center;justify-content:space-between;font:700 12px Nunito;letter-spacing:.2em;color:#a0889a}
+.bar span i{display:inline-block;width:10px;height:10px;border-radius:9px;margin-right:6px;background:#f6a1ba}
+.bar span i:nth-child(2){background:#f8c46b}.bar span i:nth-child(3){background:#9fd8c0}
+.bar button{border:0;background:#fff;box-shadow:0 2px 8px #0002;border-radius:99px;padding:8px 14px;font:700 12px Nunito;letter-spacing:.15em;cursor:pointer;color:#7a5560}
+.bd{flex:1;overflow:auto;margin:14px 0;padding-right:16px;text-align:left;line-height:2.1}
+.bd p{margin-bottom:14px}.bd p::first-letter{font:600 1.7em Fraunces,serif;color:#d9668a}
+.bd h2{font-size:34px;margin:16px 0}.bd .sg{font-style:italic}.bd h2.sn{font-style:italic;color:#c9577f}
+@media(max-width:600px){#cel{top:240px}.cat{font-size:56px}}
+</style></head><body>
+
+<div id="lights"></div>
+<div class="cat l"><img src="img/left.png" alt="miaw-1"></div><div class="cat r"><img src="img/right.png" alt="miaw-2"></div> <!-- EDIT: ganti emoji dengan <img src="..."> kalau mau -->
+
+<!-- 1. INTRO -->
+<section class="sc on" id="intro"><div class="card big">
+  <span class="eb">✦ najah.intro ✦</span>
+  <div class="pic"><div class="tenor-gif-embed" data-postid="22506940" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/cute-birthday-gif-22506940">Cute Birthday GIF</a>from <a href="https://tenor.com/search/cute-gifs">Cute GIFs</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script></div> <!-- EDIT: ganti 🎂 dengan <img src="foto.jpg"> -->
+  <span class="eb">✿ A little note for you ✿</span>
+  <h1 id="it"></h1>
+  <div id="yn"><button class="btn s">Yes!</button><button class="btn s">No</button></div>
+  <div class="dots" id="idots"><i></i><i></i><i></i></div>
+</div></section>
+
+<!-- 2. LOADING -->
+<section class="sc" id="load"><div class="card big" style="min-height:300px">
+  <span class="eb">✦ najah.next ✦</span><h1 style="font-size:46px">Have a look at it</h1>
+  <p>Setting everything up...</p><div class="ld"><i></i></div>
+</div></section>
+
+<!-- 3. KAMAR (gelap -> lampu -> kucing+musik -> Happy Birthday -> balon) -->
+<section class="sc" id="room">
+  <div class="dk" style="top:90px;right:70px">🌙</div><div class="dk" style="top:150px;left:120px">☁️</div>
+  <div class="dk" style="bottom:70px;left:120px">🎁</div><div class="dk" style="bottom:70px;right:200px">🐱💤</div>
+  <div id="hero">
+    <div id="dkt"><span class="eb" style="color:#9d90b8">Shhh</span><h1>The room is dark.</h1></div>
+  </div>
+  <div id="cel" class="card"><span class="eb">Celebration mode</span><h1>Happy Birthday</h1><p>A tiny celebration page made with lots of love.</p></div> <!-- EDIT: teks ini -->
+  <div><button class="btn" id="btn">Turn on the lights</button>
+  <div class="dots" id="rdots"><i class="a"></i><i></i><i></i><i></i><i></i></div></div>
+</section>
+
+<!-- 4. POTONG KUE + MAKE A WISH -->
+<section class="sc" id="cake">
+  <h2 style="font-size:46px">Cake Time</h2><p class="hd" style="font-weight:400">Cut the cake and make a wish</p>
+  <div class="card" id="bx">
+    <div id="cp">
+      <span class="eb">Drag here</span><h3 class="hd" style="color:#3a2a33;font-size:22px">Drag across the cake to cut it</h3>
+      <p style="font-family:Fraunces,serif">Swipe through the highlighted area to complete the cut.</p>
+      <div id="cw">
+        <svg viewBox="0 0 340 250"><defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e8708f"/><stop offset="1" stop-color="#b94b6b"/></linearGradient></defs>
+        <ellipse cx="170" cy="212" rx="165" ry="26" fill="#efe6e2"/>
+        <path d="M22 118v72c0 22 66 34 148 34s148-12 148-34v-72z" fill="url(#g)"/>
+        <ellipse cx="170" cy="118" rx="148" ry="36" fill="#fff4f6"/>
+        <path d="M40 124c0-12 14-12 14 0v22c0 10-14 10-14 0zM148 140c0 22 44 22 44 0v-10h-44zM272 124c0-12 14-12 14 0v26c0 10-14 10-14 0z" fill="#fde1e8"/>
+        <rect x="164" y="56" width="12" height="52" rx="3" fill="#f6b6c8"/><path d="M164 70l12-6M164 84l12-6M164 98l12-6" stroke="#fff" stroke-width="3"/>
+        <ellipse id="flame" cx="170" cy="44" rx="7" ry="13" fill="#ffb347"/></svg>
+        <div id="zone"><div id="fill"></div></div>
+        <div id="msg"><h2 style="font-size:30px">Cake Cut!</h2><p style="font-family:Fraunces,serif">Now make your birthday wish</p></div>
+      </div>
+      <div class="row"><span>Cut Progress</span><b id="pv">0%</b></div><div class="pb"><i id="pb2"></i></div>
+    </div>
+    <div id="wp">
+      <div class="gif"> <!-- EDIT: ganti seluruh blok ini dengan embed GIF kamu / <img src="..."> -->
+        <div class="tenor-gif-embed" data-postid="878131540913756" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/bubu-dudu-hug-spin-gif-878131540913756">Bubu Dudu Hug Sticker</a></div>
+      </div>
+      <span class="eb">Make a wish</span><h2 style="font-size:34px">Close your eyes and make a wish</h2>
+      <p style="font-family:Fraunces,serif">When you're ready, tap the button below.</p>
+      <button class="btn s" id="wb">I Made My Wish</button>
+    </div>
+  </div>
+</section>
+
+<!-- 5. KARTU FLIP -->
+<section class="sc" id="flip">
+  <h2 style="font-size:44px">Flip these birthday wishes</h2><p class="hd" style="font-weight:400">Each card hides a little message.</p>
+  <div id="cards">
+    <div class="fc"><div class="in"><div class="f"><div class="tenor-gif-embed" data-postid="18288190868930458450" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/bubu-dudu-sseeyall-gif-18288190868930458450">Bubu Dudu Sseeyall Sticker</a>from <a href="https://tenor.com/search/bubu+dudu-stickers">Bubu Dudu Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script><b>Tap me →</b></div> <!-- EDIT: ganti <span> dengan <img> -->
+      <div class="k"><p>Selamat ulang tahun yaaayy sayangkuuu imooop, semoga hal-hal baik banyak terjadi yaayyy di hidup kamu sayaaang</p><em>Tap to flip back</em></div></div></div> <!-- EDIT: ucapan 1 -->
+    <div class="fc"><div class="in"><div class="f"><div class="tenor-gif-embed" data-postid="14334016989288179934" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/bubu-dudu-seeyall-dance-happy-gif-14334016989288179934">Bubu Dudu Seeyall Sticker</a>from <a href="https://tenor.com/search/bubu+dudu-stickers">Bubu Dudu Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script><b>Tap me →</b></div>
+      <div class="k"><p>Semoga di umur yang ke-19 ini dan seterusnya, kamu banyakbanyak bahagianya, banyakbanyak hal menyenangkan. Aku selalu doakan yang terbaik bwat kamu sayaaang.</p><em>Tap to flip back</em></div></div></div> <!-- EDIT: ucapan 2 -->
+    <div class="fc"><div class="in"><div class="f"><div class="tenor-gif-embed" data-postid="4773309837646014635" data-share-method="host" data-aspect-ratio="1" data-width="100%"><a href="https://tenor.com/view/bubu-happy-celebration-celebrate-gif-4773309837646014635">Bubu Happy Sticker</a>from <a href="https://tenor.com/search/bubu-stickers">Bubu Stickers</a></div> <script type="text/javascript" async src="https://tenor.com/embed.js"></script><b>Tap me →</b></div>
+      <div class="k"><p>Kamu layak mendapat semua kebahagiaan yang datank ke hidup kamu sayaaaang, kalaw ada hal yang menyedihkan kamu bilank ke aku sajayaayy. Aku selalu disini buat kamu sayaaang.</p><em>Tap to flip back</em></div></div></div> <!-- EDIT: ucapan 3 -->
+  </div>
+  <div id="prog"><span id="pt">Start flipping the wishes</span><div class="pb"><i id="pb3"></i></div></div>
+</section>
+
+<div class="ov" id="pop"><div class="card" style="display:flex;flex-direction:column;align-items:center;gap:14px;width:min(480px,92vw)">
+  <div style="font-size:44px">🎉</div><h2 style="font-size:32px">All Wishes Discovered!</h2><p>Now open your final birthday message.</p>
+  <button class="btn" id="open">Open Final Message</button><a id="stay">Stay here</a></div></div>
+
+<div class="ov" id="let"><div class="win">
+  <div class="bar"><span><i></i><i></i><i></i></span>NAJAH-LETTER.TXT<button id="close">CLOSE</button></div>
+  <div class="bd"> <!-- EDIT: isi surat -->
+    <p style="text-align:right;font-style:italic;color:#a0889a">With lots of love</p>
+    <h2>Dear Najah my istri imoooop,</h2>
+    <p>Selamat ulang tahun yang ke-19 yaayy sayangkuuuuu, semoga panjang umur, semoga semuwa yang kamu harapkan perlahan terkabulkan, semoga emmmm tambah sayang aku, semogasemoga yang terbaik deh heheheheihi.</p>
+    <p>Ummm aku sedank cobacoba sieh style website kayak gini, aku harap kamu suka dengan ini sayaaang dan dengan hadiah yang aku berikan. Nangti dipakai yaayyy sepatunya pas kuliah kalaw kuliah, ataw kalau nongkrong-nongkrong kamu pakay imtu juga bolee bangatbangat.</p>
+    <p>Jujur sedih sieh, atas hal yang menimpa kamu belakangan ini sayaaang. Tapi aku sangat amat lega karena sudah membaik, karena pas sebelum operasi itu buanyak udahan artikel yang aku baca. Katanya di artikel sih itu prosedur normal, dan akan berjalan 20 menit - 40 menit. Tapi tetep aja aku nangis banyak banget malemnya itu, hehehehehe dan pas ujian baca cet dari kamu kalaw sudah selesay langsunk enteng bangat my kepala dan senang bangat. Semoga cepat mengering dan cepat sembuh yaaaayyy sayangkuuuu.</p>
+    <p>Buat kedepannya, aku beneran selalu mengharapkan yang terbaik buat kamu, buat kita, dan buat semuanya deh. Semangatyaaayy kuliahnya sayaaang, semangat buat hal-hal lain yang akan kamu lakukan juga. Selagi hal itu positif aku akan selalu dukung kamu imoooop, semangat menjalani hari-hari kamuyaayyy sayangkuuuu. Jangan takut, karena aku disini buat kamu. Kadang juga bakal ada hari yang tidak menyenangkan, ntah itu badmood secara tiba-tiba, ntah ada yang bikin kamu sedih. Tapi itu normal, kamu tinggal bilang ke aku sajayaayyy. Aku bakal treat kamu sesuai dengan kondisi yang sangat kamu butuhkan sayaaang, karena aku sayaaang kamu buangatbangat. Semoga hari hari kamu menyenangkan yaayy sayangkuuu. Salangeyoooyy buanyakbanyak sayaang mwahmwah💖💖💕💕💕</p>
+    <p class="sg" style="margin-top:26px">With all my love,</p><h2 class="sn">Syahrur suami najah</h2> <!-- EDIT: tanda tangan -->
+  </div>
+  <div style="display:flex;justify-content:space-between;align-items:center"><span style="color:#e0698f">♥</span><button class="btn s" id="restart" style="background:#fff;color:#7a5560;box-shadow:0 3px 12px #0002">restart</button></div>
+</div></div>
+
+<script>
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)],bd=document.body;
+const show=id=>$$('.sc').forEach(e=>e.classList.toggle('on',e.id==id));
+
+/* ---------- MUSIK (nada Happy Birthday dibuat langsung oleh browser) ---------- */
+const MUSIC_SRC=""; // EDIT: isi "lagu.mp3" kalau mau pakai lagu sendiri
+const N={G:392,A:440,B:493.9,C:523.3,D:587.3,E:659.3,F:698.5,g:784};
+const tune="G.75 G.25 A1 G1 C1 B2 G.75 G.25 A1 G1 D1 C2 G.75 G.25 g1 E1 C1 B1 A2 F.75 F.25 E1 C1 D1 C2".split(' ');
+function music(){
+  if(MUSIC_SRC){const a=new Audio(MUSIC_SRC);a.loop=true;a.play();return}
+  const ctx=new AudioContext(),play=()=>{let t=ctx.currentTime+.1;
+    tune.forEach(s=>{const d=parseFloat(s.slice(1))*.42,o=ctx.createOscillator(),g=ctx.createGain();
+      o.type='triangle';o.frequency.value=N[s[0]];
+      g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.18,t+.03);g.gain.exponentialRampToValueAtTime(.0001,t+d*.95);
+      o.connect(g).connect(ctx.destination);o.start(t);o.stop(t+d);t+=d});
+    setTimeout(play,(t-ctx.currentTime+1.5)*1000)};
+  play();
+}
+
+/* ---------- confetti & balon ---------- */
+function confetti(n){const c=['#f7a8c0','#ffc46b','#9fd8f0','#c3a8f0','#a8e0b8'];
+  for(let i=0;i<n;i++){const e=document.createElement('i');e.className='cf';
+    e.style.cssText=`left:${Math.random()*100}%;background:${c[i%5]};--d:${2.5+Math.random()*2}s;--dl:${Math.random()*.8}s`;
+    e.onanimationend=()=>e.remove();bd.append(e)}}
+function balloons(){const c=['#f9b8cc','#f7c9a8','#f4a6bd','#fbd6c8'];
+  for(let i=0;i<16;i++){const b=document.createElement('div');b.className='bl';
+    b.style.cssText=`left:${i?Math.random()*92:72}%;--c:${c[i%4]};--x:${Math.random()*60-30}px;animation-duration:${8+Math.random()*5}s;animation-delay:${i?1+i*.7+Math.random():0}s`;bd.append(b)}}
+
+/* ---------- 1. intro: 3 teks bergantian, tiap ~3 detik ---------- */
+const msgs=["It's your special day.","I made a little surprise just for you.","Ready to open it?"]; // EDIT: teks intro
+let m=0;const it=$('#it'),idots=$$('#idots i');
+function nextMsg(){it.style.opacity=0;setTimeout(()=>{it.textContent=msgs[m];it.style.opacity=1;
+  idots.forEach((d,i)=>d.classList.toggle('a',i==m));
+  if(m==2)$('#yn').classList.add('on');else{m++;setTimeout(nextMsg,3200)}},400)}
+nextMsg();
+/* Yes / No sama-sama lanjut ke loading (3 detik), lalu ke kamar gelap */
+$$('#yn button').forEach(b=>b.onclick=()=>{show('load');setTimeout(()=>{bd.classList.add('dark');show('room')},3000)});
+
+/* ---------- 2. kamar: satu tombol, berubah tiap klik ---------- */
+$$('.b').forEach(()=>0);
+['#ff7a93','#ffc46b','#ff9a76','#6fd0f5','#b79bf0','#f58f9c','#9fc7bf','#f8b6d2','#8fd18f','#ffd86b','#ff9d6b'].forEach((c,i)=>{
+  const b=document.createElement('div');b.className='b';b.style.cssText=`--c:${c};--i:${i};--h:${(i*37)%30}`;$('#lights').append(b)});
+const L=['Turn on the lights','Set the mood','Decorate the room','Release the balloons','Cut the cake'];
+const B=$('#btn'),rd=$$('#rdots i');let r=0;
+B.onclick=()=>{r++;
+  if(r==1){bd.classList.remove('dark');bd.classList.add('lit');$('#dkt').style.display='none'} // lampu muncul 1-1 kiri ke kanan
+  if(r==2){bd.classList.add('cats');music()}                                                  // kucing + musik
+  if(r==3)$('#cel').classList.add('on');                                                      // kotak Happy Birthday
+  if(r==4)balloons();                                                                         // balon naik
+  if(r==5){show('cake');return}
+  B.textContent=L[r];rd.forEach((d,i)=>d.classList.toggle('a',i==r))};
+
+/* ---------- 3. potong kue: drag sepanjang garis putus-putus ---------- */
+const z=$('#zone'),fl=$('#fill');let a=0,b=0,drag=false,cutDone=false;
+const px=e=>{const q=z.getBoundingClientRect();return Math.min(1,Math.max(0,(e.clientX-q.left)/q.width))};
+const setP=p=>{fl.style.left=a*100+'%';fl.style.width=p*100+'%';$('#pb2').style.width=p*100+'%';
+  $('#pv').textContent=Math.round(p*100)+'%'+(p>.5?' · Almost there':'')};
+z.onpointerdown=e=>{z.setPointerCapture(e.pointerId);drag=true;a=b=px(e)};
+z.onpointermove=e=>{if(!drag)return;const x=px(e);a=Math.min(a,x);b=Math.max(b,x);setP(b-a);if(b-a>.9)done()};
+z.onpointerup=z.onpointercancel=()=>{if(drag&&!cutDone){drag=false;a=b=0;setP(0)}}; // kurang dari 100% -> balik ke 0
+function done(){cutDone=true;drag=false;setP(1);$('#cw').classList.add('cut');confetti(50);
+  setTimeout(()=>{$('#cp').style.opacity=0;$('#cp').style.pointerEvents='none';$('#wp').classList.add('on')},3000)}
+$('#wb').onclick=function(){this.disabled=true;confetti(90);setTimeout(()=>show('flip'),3500)};
+
+/* ---------- 4. kartu flip: progress = jumlah kartu yang sedang menampilkan teks ---------- */
+let was=0;
+$$('.fc').forEach(c=>c.onclick=()=>{c.classList.toggle('on');
+  const n=$$('.fc.on').length;
+  $('#pt').textContent=n==0?'Start flipping the wishes':n==3?'All wishes discovered':n+'/3 wishes discovered';
+  $('#pb3').style.width=n/3*100+'%';
+  if(n==3&&was<3)setTimeout(()=>$('#pop').classList.add('on'),700);
+  was=n});
+$('#stay').onclick=()=>$('#pop').classList.remove('on');
+$('#open').onclick=()=>{$('#pop').classList.remove('on');$('#let').classList.add('on')};
+$('#close').onclick=()=>$('#let').classList.remove('on');
+$('#restart').onclick=()=>location.reload(); // reload = semuanya (termasuk musik) mulai dari awal
+</script>
+<script async src="https://tenor.com/embed.js"></script>
+</body></html>
